@@ -6,18 +6,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from '../../interfaces';
 
-export const fakeLoginResponse: LoginResponse = {
-  // fakeAccessToken.....should all come from real backend
-  accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-  refreshToken: {
-    id: 1,
-    userId: 2,
-    token: 'fakeRefreshToken...should al come from real backend',
-    refreshCount: 2,
-    expiryDate: new Date(),
-  },
-  tokenType: 'JWT'
-}
+
 
 export const fakeRegisterResponse: RegisterResponse = {
   status: 200,
@@ -36,56 +25,11 @@ export class AuthService {
     private jwtService: JwtHelperService
   ) { }
 
-  /*
-   Due to the '/api' the url will be rewritten by the proxy, e.g. to http://localhost:8080/api/auth/login
-   this is specified in the src/proxy.conf.json
-   the proxy.conf.json listens for /api and changes the target. You can also change this in the proxy.conf.json
-
-   The `..of()..` can be removed if you have a real backend, at the moment, this is just a faked response
-  */
-  login(loginRequest: LoginRequest): Observable<LoginResponse> {
-    return of(fakeLoginResponse).pipe(
-      tap((res: LoginResponse) => localStorage.setItem(LOCALSTORAGE_TOKEN_KEY, res.accessToken)),
-      tap(() => this.snackbar.open('Login Successfull', 'Close', {
-        duration: 2000, horizontalPosition: 'right', verticalPosition: 'top'
-      }))
-    );
-    // return this.http.post<LoginResponse>('/api/auth/login', loginRequest).pipe(
-    // tap((res: LoginResponse) => localStorage.setItem(LOCALSTORAGE_TOKEN_KEY, res.accessToken)),
-    // tap(() => this.snackbar.open('Login Successfull', 'Close', {
-    //  duration: 2000, horizontalPosition: 'right', verticalPosition: 'top'
-    // }))
-    // );
-  }
-
-  /*
-   The `..of()..` can be removed if you have a real backend, at the moment, this is just a faked response
-  */
-  register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
-    // TODO
-    return of(fakeRegisterResponse).pipe(
-      tap((res: RegisterResponse) => this.snackbar.open(`User created successfully`, 'Close', {
-        duration: 2000, horizontalPosition: 'right', verticalPosition: 'top'
-      })),
-    );
-    // return this.http.post<RegisterResponse>('/api/auth/register', registerRequest).pipe(
-    // tap((res: RegisterResponse) => this.snackbar.open(`User created successfully`, 'Close', {
-    //  duration: 2000, horizontalPosition: 'right', verticalPosition: 'top'
-    // }))
-    // )
-  }
-
-  /*
-   Get the user fromt the token payload
-   */
-  getLoggedInUser() {
-    const decodedToken = this.jwtService.decodeToken();
-    return decodedToken.user;
-  }
   public getStatus() : Observable<any[]> {
     return this.http.get<any[]>(`https://mocki.io/v1/7f434df6-a4ac-4817-ab7c-dd39a564d01d`);
   }
   public getUserData() : Observable<any[]> {
+    
     return this.http.get<any[]>(`https://mocki.io/v1/611a3036-4420-48a5-b8da-9b461853cdd2`);
   }
 }

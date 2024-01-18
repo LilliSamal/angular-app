@@ -2,6 +2,7 @@
   <a [routerLink]="['../login']">Go to Login</a>
   
   <mat-card>
+    <div *ngIf="!active">
     <mat-card-title>Register</mat-card-title>
 
     <mat-card-content>
@@ -47,11 +48,12 @@
 
       </form>
     </mat-card-content>
-    <div *ngIf="posts && posts.length > 0">
+    </div>
+    <div *ngIf="active">
       <h2>Posts from the API:</h2>
       <ul>
-        <li *ngFor="let post of posts">
-          {{ post.success }}
+        <li >
+          {{ success }}
         </li>
       </ul>
     </div>

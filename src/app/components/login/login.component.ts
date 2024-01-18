@@ -21,15 +21,16 @@ export class LoginComponent {
     private router: Router
   ) { }
 
-  posts: any;
+  posts: any ='';
+  outputName:String ='';
+  outputEmail:String ='';
+  outputBio:String ='';
+  active:boolean=false;
+
   login() {
     if (!this.loginForm.valid) {
       return;
     }
-    //this.authService.login(this.loginForm.value).pipe(
-      // route to protected/dashboard, if login was successfull
-     // tap(() => this.router.navigate(['../../panel']))
-    //).subscribe();
     this.loadData();
   }
 
@@ -37,6 +38,10 @@ export class LoginComponent {
     this.authService.getUserData().subscribe((data) => {
       this.posts = data;
       console.log(this.posts);
+      this.active = true;
+      this.outputName = this.posts.name.toString();
+      this.outputEmail = this.posts.email.toString();
+      this.outputBio = this.posts.bio.toString();
     }); 
   }
 

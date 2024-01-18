@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
 
-  posts: any[] = [];
+  posts: any ='';
+  success:String='';
+  active:boolean=false;
   registerForm = new FormGroup({
     name: new FormControl(null, [Validators.required]),
     email: new FormControl(null, [Validators.required, Validators.email]),
@@ -25,25 +27,21 @@ export class RegisterComponent {
     private router: Router,
     private authService: AuthService
   ) { }
-  ngOnInit() {
-    //this.loadData();
-  }
+  
   register() {
     if (!this.registerForm.valid) {
       return;
     }
     this.loadData();
-    //this.authService.register(this.registerForm.value).pipe(
-      // If registration was successfull, then navigate to login route
-      //tap(() => this.router.navigate(['../login']))
-    //).subscribe();
         
   }
 
   loadData() {
-    this.authService.getStatus().subscribe((data: any[]) => {
+    this.authService.getStatus().subscribe((data) => {
       this.posts = data;
       console.log(this.posts);
+      this.success="Registration Successful";
+      this.active=this.posts.success.toString();
     });
   }
 }
