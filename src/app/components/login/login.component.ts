@@ -37,7 +37,7 @@ export class LoginComponent {
     this.authService.getUserData().subscribe((data) => {
       this.posts = data;
       console.log(this.posts);
-    });
+    }); 
   }
 
 
