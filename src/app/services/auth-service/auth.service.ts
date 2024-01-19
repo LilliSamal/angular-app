@@ -21,9 +21,10 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private snackbar: MatSnackBar,
-    private jwtService: JwtHelperService
-  ) { }
+    //private snackbar: MatSnackBar,
+    //private jwtService: JwtHelperService
+  ) { } 
+
 
   public getStatus() : Observable<any[]> {
     return this.http.get<any[]>(`https://mocki.io/v1/7f434df6-a4ac-4817-ab7c-dd39a564d01d`);

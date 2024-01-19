@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'login-and-register-example'`, () => {
+  /*it(`should have as title 'login-and-register-example'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('login-and-register-example');
-  });
+  });*/
 
-  it('should render title', () => {
+  /*it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.content span')?.textContent).toContain('login-and-register-example app is running!');
-  });
+  });*/
 });

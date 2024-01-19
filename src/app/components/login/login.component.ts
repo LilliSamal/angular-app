@@ -25,6 +25,7 @@ export class LoginComponent {
   outputName:String ='';
   outputEmail:String ='';
   outputBio:String ='';
+  imageurl:String ='';
   active:boolean=false;
 
   login() {
@@ -42,6 +43,7 @@ export class LoginComponent {
       this.outputName = this.posts.name.toString();
       this.outputEmail = this.posts.email.toString();
       this.outputBio = this.posts.bio.toString();
+      this.imageurl = this.posts.img;
     }); 
   }
 

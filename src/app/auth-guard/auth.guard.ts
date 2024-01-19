@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
 
   constructor(
     private router: Router,
-    private jwtService: JwtHelperService
+   // private jwtService: JwtHelperService
   ) { }
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -21,11 +21,11 @@ export class AuthGuard implements CanActivate {
     //       then he can access the frontend route, but will not get any data from the backend)
     // --> then redirect to the base route and deny the routing
     // --> else return true and allow the routing
-    if (this.jwtService.isTokenExpired()) {
-      this.router.navigate(['']);
-      return false;
-    } else {
+    //if (this.jwtService.isTokenExpired()) {
+    //  this.router.navigate(['']);
+    //  return false;
+    //} else {
       return true;
-    }
+    //}
   }
 }
